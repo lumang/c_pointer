@@ -105,3 +105,59 @@ int main() {
     return 0;
 }
 ``` 
+# [结构体](https://www.tutorialspoint.com/cprogramming/c_structures.htm)
+参考[C Structures](https://www.tutorialspoint.com/cprogramming/c_structures.htm)
+结构体是一种数据类型，它可以组合多个变量，并定义变量的顺序。
+## 1 定义结构体
+```c
+struct student {
+    char name[20];
+    int age;
+    float score;
+};
+```
+## 2 访问结构体成员
+```c
+struct student stu;
+stu.age = 18;
+stu.score = 90.5;
+strcpy(stu.name, "Tom");
+```
+## 3 结构体指针
+```c
+struct student stu;
+struct student *p = &stu;
+p->age = 18;
+p->score = 90.5;
+strcpy(p->name, "Tom");
+```
+## 4 结构体数组
+```c
+struct student stu[3];
+stu[0].age = 18;
+stu[0].score = 90.5;
+strcpy(stu[0].name, "Tom");
+```
+## 5 结构体指针数组
+```c
+struct student stu[3];
+struct student *p[3];
+p[0] = &stu[0];
+p[0]->age = 18;
+p[0]->score = 90.5;
+strcpy(p[0]->name, "Tom");
+```
+## 6 结构体嵌套
+```c
+struct student {
+    char name[20]; // 学生的姓名
+    int age; // 学生的年龄
+    float score; // 学生的成绩
+    struct address {
+        char city[20]; // 学生所在的城市
+        char street[20]; // 学生所在的街道
+        int number; // 学生所在的门牌号
+    } addr; // 学生的地址
+};
+```
+   
