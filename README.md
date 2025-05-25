@@ -190,3 +190,5 @@ int main() {
     return 0;
 }
 ```
+# 多文件编译
+> gcc main.c file1.c file2.c -o output
