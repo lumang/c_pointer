@@ -16,7 +16,7 @@ typedef struct{
  * @param foundCount 输出参数，匹配结果数量
  * @return 匹配结果数组指针（需调用者free）
  */
-Person* searchByName(Person* p, int n, const char* name,  int* foundCount) 
+Person* searchByName(Person* p, int n, const char* name, int age, int* foundCount) 
 {
     *foundCount = 0;
     if(!p || n <= 0 || !name) return NULL;
@@ -24,7 +24,7 @@ Person* searchByName(Person* p, int n, const char* name,  int* foundCount)
     // 第一次遍历：统计匹配数量
     int count = 0;
     for(int i = 0; i < n; i++) {
-        if(strstr(p[i].name, name) != NULL) { // 精确匹配
+        if((strstr(p[i].name, name) != NULL)&& (p[i].age < age)) { // 精确匹配
             count++;
         }
     }
@@ -37,7 +37,7 @@ Person* searchByName(Person* p, int n, const char* name,  int* foundCount)
     // 第二次遍历：填充结果
     int index = 0;
     for(int i = 0; i < n; i++) {
-        if(strstr(p[i].name, name) != NULL) {
+        if((strstr(p[i].name, name) != NULL)&& (p[i].age<age)) {
             result[index++] = p[i]; // 结构体复制
         }
     }
@@ -52,12 +52,12 @@ int main()
         {2, "Jerry", 18},
         {3, "Alice", 22},
         {4, "Bob", 19},
-        {5, "错误的内容", 19},
+        {5, "错误的内容", 29},
         {6, "错误的内容", 19},
     };
    
     int matchCount;
-    Person* results = searchByName(p, sizeof(p)/sizeof(p[0]), "错误",&matchCount);
+    Person* results = searchByName(p, sizeof(p)/sizeof(p[0]), "错误",20,&matchCount);
 
     if(results) {
         for(int i = 0; i < matchCount; i++) {
